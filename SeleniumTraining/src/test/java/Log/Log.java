@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,8 +48,8 @@ public static Logger log= LogManager.getLogger(Log.class.getName());
 	}
 
 	public static void testcaseInfo(String Description) {
-		log.info("************************************** "+Description+" *********************************************");
-		Reporter.log("<b>***************************** "+Description+" *******************************************</b>");
+		log.info("******************** "+Description+" "+printCurrentTimeAndDate()+" ************");
+		Reporter.log("<b><center>***** "+Description+" "+printCurrentTimeAndDate()+" *****</center></b>");
  	}
 
 	
@@ -68,5 +70,26 @@ public static void deleteContents(File directory) {
                 }
                 file.delete();
             }
-        }}}
+        }}
+
+
+    public static String printCurrentTimeAndDate() {
+        // Get the current date and time
+        Date currentDate = new Date();
+        
+        // Define the time and date formats
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, d MMMM yyyy", Locale.ENGLISH);
+        
+        // Format the current time and date
+        String formattedTime = timeFormat.format(currentDate);
+        String formattedDate = dateFormat.format(currentDate);
+        
+        // Print the formatted time and date
+        String currenTime=formattedTime+" "+formattedDate;
+        return currenTime;
+    }
+
+
+}
  
