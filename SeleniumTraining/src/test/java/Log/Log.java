@@ -18,6 +18,7 @@ import org.apache.commons.io.FileUtils;
 
 
 public class Log {
+	static int screenshotNumber=1;
 
 public static Logger log= LogManager.getLogger(Log.class.getName());
 	
@@ -37,16 +38,20 @@ public static Logger log= LogManager.getLogger(Log.class.getName());
   		FileUtils.copyFile(file, filePath);
 		file.delete();
 		log.info(message);
-		Reporter.log(message+"<a target=\"_blank\" href=\"." + File.separator + "Screenshots" + File.separator + screenshotName + "\">[Screenshot]</a>");
+		Reporter.log(message+"<a target=\"_blank\" href=\"."+File.separator + "Screenshots" + File.separator + screenshotName + "\">[Screenshot]</a>");
 	}
 	
 	public static String getScreenshotPath() {
 		Calendar calendar=Calendar.getInstance();
 		SimpleDateFormat smDateformat=new SimpleDateFormat("DD-MM-yyyy-hh-mm-ss-SSS");
-		String ScreenshotPath="test-output/Screenshots/Test"+smDateformat.format(calendar.getTime())+".png";
+		String ScreenshotPath="test-output/Screenshots/Test"+screenshotNumber+".png";
 		log.trace("Screenshot Path: "+ScreenshotPath);	
+		screenshotNumber++;
 		return ScreenshotPath;
 	}
+
+
+	 
 	
 	
 
