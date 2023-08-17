@@ -58,7 +58,7 @@ public static Logger log= LogManager.getLogger(Log.class.getName());
 	
 	public static void deleteAllScreenshot() {
 		log.info("Deleting the existing report screenshot");
-		File filePath=new File("Screenshots");
+		File filePath=new File("test-output/Screenshots/");
 		String absoultePath=filePath.getAbsolutePath();
 		log.info("Adsolute delete path :"+absoultePath);
 		deleteContents(filePath);
