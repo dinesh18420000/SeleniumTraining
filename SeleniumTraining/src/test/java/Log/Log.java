@@ -27,29 +27,32 @@ public static Logger log= LogManager.getLogger(Log.class.getName());
 		Reporter.log(message);
 	}
 	
+	
 	public static void message(String message,boolean screenshot,WebDriver driver) throws IOException
 	{
 		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String ScreenshotPath=getScreenshotPath();
 		File filePath=new File(ScreenshotPath);
-		String absoultePath=filePath.getAbsolutePath();
- 		FileUtils.copyFile(file, filePath);
+		String screenshotName= ScreenshotPath.replace("test-output/Screenshots/", "");
+  		FileUtils.copyFile(file, filePath);
 		file.delete();
 		log.info(message);
-		Reporter.log(message+"<a target=\"_blank\" href=\""+absoultePath+"\">[Screenshot]</a>");
+		Reporter.log(message+"<a target=\"_blank\" href=\"." + File.separator + "Screenshots" + File.separator + screenshotName + "\">[Screenshot]</a>");
 	}
 	
 	public static String getScreenshotPath() {
 		Calendar calendar=Calendar.getInstance();
 		SimpleDateFormat smDateformat=new SimpleDateFormat("DD-MM-yyyy-hh-mm-ss-SSS");
-		String ScreenshotPath="Screenshots/Test"+smDateformat.format(calendar.getTime())+".png";
-		log.trace("Sccreenshot Path: "+ScreenshotPath);	
+		String ScreenshotPath="test-output/Screenshots/Test"+smDateformat.format(calendar.getTime())+".png";
+		log.trace("Screenshot Path: "+ScreenshotPath);	
 		return ScreenshotPath;
 	}
+	
+	
 
 	public static void testcaseInfo(String Description) {
 		log.info("******************** "+Description+" "+printCurrentTimeAndDate()+" ************");
-		Reporter.log("<b><center>***** "+Description+" "+printCurrentTimeAndDate()+" *****</center></b>");
+		Reporter.log("<b><strong><font size=\"4\"><center>***** "+Description+" *****</font></strong></center></b>");
  	}
 
 	
