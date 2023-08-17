@@ -15,7 +15,5 @@ public class HomePage {
 	List<WebElement> sideNavTabs;
 	
 	
-	public void printMessage() throws FileNotFoundException, IOException {
-		GeneralUtills generalUtills = new GeneralUtills();
- 	}
+	 
 }

@@ -17,8 +17,9 @@ import org.testng.annotations.Test;
 import Utills.DataUtills;
 import Log.Log;
 import Pages.HomePage;
+import Pages.LoginPage;
 
-public class TestNG_Parameter {
+public class RegressionSuite1 {
 
 	public WebDriver driver;
 	
@@ -32,19 +33,11 @@ public class TestNG_Parameter {
 	
 
 	@Test
-	public void parameter() throws  IOException {
-		Log.testcaseInfo("Launching the google site on chrome browser");
-		driver.get("http://www.google.com");
- 		Log.message("Open the google.com",true,driver);
-  	}
-	
-	@Test
-	public void Test_001() throws IOException, InvalidFormatException  {
-		Log.testcaseInfo("Launching the google site on chrome browser");
-		Map<String,String> testData=DataUtills.getTestData("Sheet1", "Tc001");
-		
- 		Log.message("Open the google.com",true,driver);
-  	}
+	public void TestCase001() throws  IOException {
+	 Log.testcaseInfo("Login Scenario");
+	 LoginPage loginPage=new LoginPage();
+	 loginPage.launchLoginPage(driver);
+	}
 	
 	@AfterSuite
 	public void closeBrowser() {
