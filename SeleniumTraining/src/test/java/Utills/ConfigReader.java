@@ -9,9 +9,9 @@ import Log.Log;
 
 public class ConfigReader {
 
-	public Properties properties = new Properties();
+	public static Properties properties = new Properties();
 
-	public String getProperties(String key) {
+	public static String getProperties(String key) {
 		String value = null;
 		try {
 			// Load the properties file
@@ -31,5 +31,7 @@ public class ConfigReader {
 	public static ConfigReader getInstance() {
 		ConfigReader envProperties = new ConfigReader();
 		return envProperties;
+		
+		
 	}
 }

@@ -2,7 +2,6 @@ package TestScripts;
 
 import java.io.Console;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -15,6 +14,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import Utills.DataUtills;
+import Utills.WebdriverManager;
 import Log.Log;
 import Pages.HomePage;
 import Pages.LoginPage;
@@ -22,23 +22,15 @@ import Pages.LoginPage;
 public class RegressionSuite1 {
 
 	public WebDriver driver;
-	
-	@BeforeSuite
-	public void setupDriver() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\dinesh.nachimuthu\\Documents\\chromedriver.exe");
-		Log.deleteAllScreenshot();
-	 	driver = new ChromeDriver();
-	}
-	
 
 	@Test
-	public void TestCase001() throws  IOException {
-	 Log.testcaseInfo("Login Scenario");
-	 LoginPage loginPage=new LoginPage();
-	 loginPage.launchLoginPage(driver);
+	public void TestCase001() throws Exception {
+		driver = WebdriverManager.getWebdriver();
+		Log.testcaseInfo("Login Scenario");
+		LoginPage loginPage = new LoginPage();
+		loginPage.launchLoginPage(driver);
 	}
-	
+
 	@AfterSuite
 	public void closeBrowser() {
 		driver.quit();

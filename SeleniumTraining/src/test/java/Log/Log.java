@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
  import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.Reporter;
 import org.apache.commons.io.FileUtils;
 
@@ -98,6 +99,10 @@ public static void deleteContents(File directory) {
         return currenTime;
     }
 
+    public static void fail(String message) throws IOException {
+    	message(message);
+    	Assert.fail(message);
+    }
 
 }
  
